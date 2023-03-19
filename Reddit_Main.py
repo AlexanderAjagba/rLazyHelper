@@ -25,7 +25,7 @@ post_data = {
     "password" : rp_content
 }
 
-headers = {"User-Agent": "TestClient by Starlegendgod"}
+headers = {"User-Agent": "rLazyHelper by u/Starlegendgod"}
 
 response = requests.post("https://www.reddit.com/api/v1/access_token", auth=client_auth, data=post_data, headers=headers) #creation of token for use
 
