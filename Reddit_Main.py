@@ -34,7 +34,7 @@ token_content = response.json()
 auth_content = "{0} {1}".format(token_content["token_type"],token_content["access_token"])
 
 
-headers = {"Authorization": auth_content, "User-Agent": "TestClient by Starlegendgod"}
+headers = {"Authorization": auth_content, "User-Agent": "rLazyHelper by u/Starlegendgod"}
 
 response = requests.get("https://oauth.reddit.com/api/v1/me", headers=headers)
 
@@ -43,13 +43,11 @@ def hot_search(): #this function used to find the current most active posts rece
     subreddit_input = input("put your sub to see if it exist\n\ntype here -> ")
     req_link = "https://oauth.reddit.com/r/{0}/hot".format(subreddit_input)
     res = requests.get(req_link, headers=headers,params={'limit' : 10})
-    print(res.json())
     if res.json().get("message") == "Bad Request" or res.json().get("error") == 404:
         print("seems like the subreddit is no longer available or an Error has occured..Type up a new one!")
         time.sleep(2)
         hot_search()
     elif res.json()["data"]["children"]:
-        print(res.json())
         print("Alright here is some Active topics for {0} subreddit currently\n--------------------------------".format(subreddit_input))
         for mini_post in res.json()["data"]["children"]:
             print(mini_post["data"]["title"]+"\n")
